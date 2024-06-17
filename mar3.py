@@ -6,7 +6,7 @@ import matplotlib.animation as animation
 grid_size = (20, 20)
 
 # Define water puddle areas
-pond1 = [(x, y) for x in range(0, 7) for y in range(6, 14)]
+pond1 = [(x, y) for x in range(0, 6) for y in range(6, 14)]
 pond2 = [(x, y) for x in range(7, 17) for y in range(7, 17)]
 
 # Define the states
@@ -19,10 +19,10 @@ actions = ['left', 'right', 'forward', 'left_forward', 'right_forward']
 rewards = {state: -0.1 for state in states}
 for x, y in pond1:
     for theta in range(4):
-        rewards[(x, y, theta)] = -1 * 0.2  # Water 
+        rewards[(x, y, theta)] = -1 * 1  # Water 
 for x, y in pond2:
     for theta in range(4):
-        rewards[(x, y, theta)] = -1 * 0.2  # Water
+        rewards[(x, y, theta)] = -1 * 1  # Water
 
 # Define a goal state
 goal_state = (0, 19, 0)
@@ -159,7 +159,7 @@ for (x, y, theta), reward in rewards.items():
     ax.text(x, y, f'{reward:.1f}', color='black', fontsize=8, ha='center', va='center')
 
 # Run the simulation
-start_state = (0, 0, 0)  # Start from the top-right corner
+start_state = (13, 8, 0)  # Start from the top-right corner
 path = simulate_policy(policy, start_state)
 
 # Animation initialization
@@ -206,4 +206,4 @@ plt.gca().invert_yaxis()
 
 # Display the animation
 plt.show()
-ani.save('robot_simulation2.gif', writer='pillow', fps=10)
+ani.save('robot_simulation4.gif', writer='pillow', fps=10)
